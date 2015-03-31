@@ -21,7 +21,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     
-    // image selection button outlets
+    // toolbar and image selection button outlets
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var pickFromCameraButton: UIBarButtonItem!
     @IBOutlet weak var pickFromAlbumButton: UIBarButtonItem!
     
@@ -43,6 +44,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var oldBottomText: String?
     var didCancel: Bool = false
     
+    // array for saved memes
+    var savedMemes = [ Meme ]()
+    
     override func viewWillAppear( animated: Bool )
     {
         // disable camera button if the device doesn't have a camera
@@ -62,17 +66,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         setTextFields()
         
         // subscribe to keyboard notifications
-//        NSNotificationCenter.defaultCenter().addObserver(
-//            self,
-//            selector: "shiftFrameUp:",
-//            name: UIKeyboardWillShowNotification,
-//            object: nil )
-//        
-//        NSNotificationCenter.defaultCenter().addObserver(
-//            self,
-//            selector: "shiftFrameDown:",
-//            name: UIKeyboardWillHideNotification,
-//            object: nil )
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "shiftFrameUp:",
+            name: UIKeyboardWillShowNotification,
+            object: nil )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "shiftFrameDown:",
+            name: UIKeyboardWillHideNotification,
+            object: nil )
     }
     
 //    override func viewWillDisappear( animated: Bool )
@@ -144,6 +148,61 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // dismiss the image picker
         dismissViewControllerAnimated( true, completion: nil )
+    }
+    
+    @IBAction func shareMemedImage( sender: UIBarButtonItem )
+    {
+        // create the meme'd image
+        let memedImage = createMemedImage()
+        
+        // put the image into an array to pass to the activity view
+        let memedImageArray = [ memedImage ]
+        
+        // create the activity view and its completion handler
+        let activityView = UIActivityViewController( activityItems: memedImageArray, applicationActivities: nil )
+        activityView.completionWithItemsHandler =
+        {
+            activity, completed, items, error in
+            if( completed )
+            {
+                println( "Calling completion handler..." )
+                self.saveMeme( memedImage )
+                self.dismissViewControllerAnimated( true, completion: nil )
+            }
+        }
+        
+        self.presentViewController( activityView, animated: true, completion: nil )
+    }
+    
+    func createMemedImage() -> UIImage
+    {
+        // Render view to an image
+        UIGraphicsBeginImageContext( self.view.frame.size )
+        
+        // hide the navigation bar and the toolbar so only the image itself is saved
+        self.navigationController?.navigationBar.hidden = true
+        bottomToolbar.hidden = true
+        
+        self.view.drawViewHierarchyInRect( self.view.frame, afterScreenUpdates: true )
+        
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        // show the navigation bar and toolbar again after saving the meme'd image
+        self.navigationController?.navigationBar.hidden = false
+        bottomToolbar.hidden = false
+        
+        return memedImage
+    }
+    
+    func saveMeme( meme: UIImage )
+    {
+        let newMeme = Meme( topText: topText.text,
+                            bottomText: bottomText.text,
+                            image: memeImageView.image,
+                            memedImage: meme )
+        savedMemes.append( newMeme )
     }
     
     func imagePickerControllerDidCancel( picker: UIImagePickerController )

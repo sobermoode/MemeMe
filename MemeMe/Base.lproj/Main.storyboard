@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="moE-Yq-Ma2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,6 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8pU-f8-1XI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UST-5e-Vm0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtP-lD-RFM">
@@ -40,7 +42,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lvk-6r-a4m">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="T8K-Kx-G12" id="QMP-ls-fCi"/>
                                 </connections>
@@ -48,7 +50,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzP-IA-uly">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="T8K-Kx-G12" id="2u0-pd-x3P"/>
                                 </connections>
@@ -82,8 +84,14 @@
                                 <exclude reference="jzP-IA-uly"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="slh-HF-8Ec"/>
                                 <exclude reference="O7C-Re-DX5"/>
                                 <exclude reference="j55-pc-Rkt"/>
+                                <exclude reference="1O3-af-7az"/>
+                                <exclude reference="UDd-nR-glk"/>
+                                <exclude reference="Vtc-K3-YI3"/>
+                                <exclude reference="wSw-sT-C5L"/>
+                                <exclude reference="yCx-xh-OXa"/>
                                 <exclude reference="8BW-f7-nkB"/>
                                 <exclude reference="GKA-ez-NSq"/>
                                 <exclude reference="Jav-AU-Hns"/>
@@ -93,12 +101,6 @@
                                 <exclude reference="goZ-Ev-jRq"/>
                                 <exclude reference="pev-RC-Cx9"/>
                                 <exclude reference="wPg-EV-W06"/>
-                                <exclude reference="1O3-af-7az"/>
-                                <exclude reference="UDd-nR-glk"/>
-                                <exclude reference="Vtc-K3-YI3"/>
-                                <exclude reference="wSw-sT-C5L"/>
-                                <exclude reference="yCx-xh-OXa"/>
-                                <exclude reference="slh-HF-8Ec"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -109,8 +111,14 @@
                                 <include reference="jzP-IA-uly"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="slh-HF-8Ec"/>
                                 <include reference="O7C-Re-DX5"/>
                                 <include reference="j55-pc-Rkt"/>
+                                <include reference="1O3-af-7az"/>
+                                <include reference="UDd-nR-glk"/>
+                                <include reference="Vtc-K3-YI3"/>
+                                <include reference="wSw-sT-C5L"/>
+                                <include reference="yCx-xh-OXa"/>
                                 <include reference="8BW-f7-nkB"/>
                                 <include reference="GKA-ez-NSq"/>
                                 <include reference="Jav-AU-Hns"/>
@@ -120,22 +128,21 @@
                                 <include reference="goZ-Ev-jRq"/>
                                 <include reference="pev-RC-Cx9"/>
                                 <include reference="wPg-EV-W06"/>
-                                <include reference="1O3-af-7az"/>
-                                <include reference="UDd-nR-glk"/>
-                                <include reference="Vtc-K3-YI3"/>
-                                <include reference="wSw-sT-C5L"/>
-                                <include reference="yCx-xh-OXa"/>
-                                <include reference="slh-HF-8Ec"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="4wp-ya-n1D">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="VGf-9b-uoy"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="VGf-9b-uoy">
+                            <connections>
+                                <action selector="shareMemedImage:" destination="T8K-Kx-G12" id="lOG-kz-8pI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="NjE-fM-BnE"/>
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="VGf-9b-uoy" id="SCz-f6-HCz"/>
                         <outlet property="bottomText" destination="jzP-IA-uly" id="bE1-7b-Fc6"/>
+                        <outlet property="bottomToolbar" destination="gtP-lD-RFM" id="9Of-52-4y1"/>
                         <outlet property="cancelButton" destination="NjE-fM-BnE" id="piM-Hr-xGt"/>
                         <outlet property="memeImageView" destination="lji-TM-qNZ" id="kBS-JS-knO"/>
                         <outlet property="pickFromAlbumButton" destination="JEo-RK-PT1" id="iEW-3Q-w0Q"/>
