@@ -119,6 +119,10 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="VGf-9b-uoy"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="NjE-fM-BnE"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bottomText" destination="jzP-IA-uly" id="bE1-7b-Fc6"/>
+                        <outlet property="topText" destination="Lvk-6r-a4m" id="fnR-S6-ceh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZM1-Fb-R9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
