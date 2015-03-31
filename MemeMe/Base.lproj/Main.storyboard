@@ -148,11 +148,72 @@
                         <outlet property="pickFromAlbumButton" destination="JEo-RK-PT1" id="iEW-3Q-w0Q"/>
                         <outlet property="pickFromCameraButton" destination="R2k-tx-p2x" id="YJF-Mz-nCp"/>
                         <outlet property="topText" destination="Lvk-6r-a4m" id="fnR-S6-ceh"/>
+                        <segue destination="N0L-ls-mPP" kind="show" identifier="showSavedMemesViewController" id="aen-31-RM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZM1-Fb-R9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642.5" y="422"/>
+            <point key="canvasLocation" x="1494" y="422"/>
+        </scene>
+        <!--Collection-->
+        <scene sceneID="9JW-j4-QYO">
+            <objects>
+                <viewController id="gAu-F2-IrN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gsy-ka-ErL"/>
+                        <viewControllerLayoutGuide type="bottom" id="rT6-pj-4Zl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LYj-rD-26Q">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Collection" id="Yoc-kA-qdE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tPV-y9-VXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2953.5" y="759"/>
+        </scene>
+        <!--Table-->
+        <scene sceneID="v7c-3W-iF2">
+            <objects>
+                <viewController id="EXN-1c-wvJ" customClass="SavedMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gfo-Nn-Jf1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemeCell" id="gJE-Nl-JEy">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gJE-Nl-JEy" id="SVV-NM-uqq">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Table" id="aUf-Bg-nIN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1J-iD-Ecc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2953.5" y="98"/>
+        </scene>
+        <!--Saved Memes View Controller-->
+        <scene sceneID="BbV-Mb-BwV">
+            <objects>
+                <tabBarController storyboardIdentifier="SavedMemesViewController" id="N0L-ls-mPP" customClass="SavedMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Mhd-qb-QlN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="EXN-1c-wvJ" kind="relationship" relationship="viewControllers" id="O3J-h7-CQW"/>
+                        <segue destination="gAu-F2-IrN" kind="relationship" relationship="viewControllers" id="Nyz-om-4El"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HmV-rX-8xY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2329.5" y="422"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eGt-1K-zYG">

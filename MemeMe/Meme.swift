@@ -16,3 +16,15 @@ struct Meme
     var image: UIImage!
     var memedImage: UIImage!
 }
+
+extension Meme
+{
+    // Meme model data for saved memes
+    static var allMemes = [ Meme ]()
+    
+    // adds a new Meme to the model
+    static func addMeme( newMeme: Meme )
+    {
+        self.allMemes.append( newMeme )
+    }
+}

@@ -168,6 +168,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 println( "Calling completion handler..." )
                 self.saveMeme( memedImage )
                 self.dismissViewControllerAnimated( true, completion: nil )
+                
+                // let savedMemesViewController = SavedMemesViewController()
+                // savedMemesViewController.allMemes = self.savedMemes
+                
+                // self.navigationController?.showViewController( savedMemesViewController, sender: self )
+                // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
+                let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
+                
+                self.navigationController?.pushViewController( savedMemesViewController, animated: true )
             }
         }
         
@@ -202,7 +211,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                             bottomText: bottomText.text,
                             image: memeImageView.image,
                             memedImage: meme )
-        savedMemes.append( newMeme )
+        Meme.addMeme( newMeme )
+        println( "There are now \(Meme.allMemes.count) memes." )
     }
     
     func imagePickerControllerDidCancel( picker: UIImagePickerController )
