@@ -60,7 +60,34 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // set the appearance of the text fields' text
         setTextFields()
+        
+        // subscribe to keyboard notifications
+//        NSNotificationCenter.defaultCenter().addObserver(
+//            self,
+//            selector: "shiftFrameUp:",
+//            name: UIKeyboardWillShowNotification,
+//            object: nil )
+//        
+//        NSNotificationCenter.defaultCenter().addObserver(
+//            self,
+//            selector: "shiftFrameDown:",
+//            name: UIKeyboardWillHideNotification,
+//            object: nil )
     }
+    
+//    override func viewWillDisappear( animated: Bool )
+//    {
+//        NSNotificationCenter.defaultCenter().removeObserver(
+//            self,
+//            name: UIKeyboardWillShowNotification,
+//            object: nil )
+//        NSNotificationCenter.defaultCenter().removeObserver(
+//            self,
+//            name: UIKeyboardWillHideNotification,
+//            object: nil )
+//        
+//        // NSNotificationCenter.defaultCenter().removeObserver( self )
+//    }
     
     func setTextFields()
     {
@@ -135,6 +162,34 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.text = ""
     }
     
+    // TODO: these functions are being called multiple times.
+    // Figure out why. Figure out why the simulatio keyboard
+    // doesn't always appear when editing a text field.
+    
+    // shift the view so the keyboard doesn't obscure the image
+    func shiftFrameUp( notification: NSNotification )
+    {
+        println( "Shifting frame up..." )
+        if( bottomText.editing )
+        {
+            let userInfo = notification.userInfo
+            let keyboardSize = userInfo![ UIKeyboardFrameEndUserInfoKey ] as NSValue
+            self.view.frame.origin.y -= keyboardSize.CGRectValue().height
+        }
+    }
+    
+    // reset the view
+    func shiftFrameDown( notification: NSNotification )
+    {
+        println( "Shifting frame down..." )
+        if( bottomText.editing )
+        {
+            let userInfo = notification.userInfo
+            let keyboardSize = userInfo![ UIKeyboardFrameEndUserInfoKey ] as NSValue
+            self.view.frame.origin.y += keyboardSize.CGRectValue().height
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
