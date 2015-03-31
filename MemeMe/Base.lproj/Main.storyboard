@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="moE-Yq-Ma2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Meme Editor View Controller-->
@@ -25,19 +26,31 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="u6o-RN-E3A"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lji-TM-qNZ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="GKA-ez-NSq"/>
                             <constraint firstAttribute="trailing" secondItem="gtP-lD-RFM" secondAttribute="trailing" id="Vtc-K3-YI3"/>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="top" secondItem="GeY-dQ-5L3" secondAttribute="bottom" id="ZdK-Bc-xGM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lji-TM-qNZ" secondAttribute="trailing" constant="-16" id="goZ-Ev-jRq"/>
                             <constraint firstItem="8pU-f8-1XI" firstAttribute="top" secondItem="gtP-lD-RFM" secondAttribute="bottom" id="slh-HF-8Ec"/>
+                            <constraint firstItem="gtP-lD-RFM" firstAttribute="top" secondItem="lji-TM-qNZ" secondAttribute="bottom" id="wSw-sT-C5L"/>
                             <constraint firstItem="gtP-lD-RFM" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leading" id="yCx-xh-OXa"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="gtP-lD-RFM"/>
+                                <exclude reference="lji-TM-qNZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="GKA-ez-NSq"/>
+                                <exclude reference="ZdK-Bc-xGM"/>
+                                <exclude reference="goZ-Ev-jRq"/>
                                 <exclude reference="Vtc-K3-YI3"/>
+                                <exclude reference="wSw-sT-C5L"/>
                                 <exclude reference="yCx-xh-OXa"/>
                                 <exclude reference="slh-HF-8Ec"/>
                             </mask>
@@ -45,9 +58,14 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="gtP-lD-RFM"/>
+                                <include reference="lji-TM-qNZ"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="GKA-ez-NSq"/>
+                                <include reference="ZdK-Bc-xGM"/>
+                                <include reference="goZ-Ev-jRq"/>
                                 <include reference="Vtc-K3-YI3"/>
+                                <include reference="wSw-sT-C5L"/>
                                 <include reference="yCx-xh-OXa"/>
                                 <include reference="slh-HF-8Ec"/>
                             </mask>
