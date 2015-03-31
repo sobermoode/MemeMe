@@ -8,8 +8,15 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
+    // ACTION/CANCEL button outlets
+    @IBOutlet weak var actionButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    // meme'd image outlet
+    @IBOutlet weak var memeImageView: UIImageView!
+    
     // meme text field outlets
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
@@ -27,6 +34,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName: -4.0,
     ]
     
+    // flag to hide text fields before an image is picked
+    var isFirstTime: Bool = true
+    
     // flag and vars to retain inputted meme text if the user
     // brings up the image picker and then cancels
     var oldTopText: String?
@@ -38,6 +48,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // disable camera button if the device doesn't have a camera
         pickFromCameraButton.enabled = UIImagePickerController.isSourceTypeAvailable( .Camera )
         
+        // hide the text fields before the user picks the first image;
+        // disable the ACTION button if the user hasn't meme'd an image
+        if( isFirstTime )
+        {
+            topText.hidden = true
+            bottomText.hidden = true
+            actionButton.enabled = false
+            cancelButton.enabled = false
+        }
+        
         // set the appearance of the text fields' text
         setTextFields()
     }
@@ -47,12 +67,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topText.defaultTextAttributes = textFieldAttributes
         topText.borderStyle = UITextBorderStyle.None
         topText.textAlignment = NSTextAlignment.Center
-        topText.text = ( didCancel ) ? oldTopText : ""
-        
         bottomText.defaultTextAttributes = textFieldAttributes
         bottomText.borderStyle = UITextBorderStyle.None
         bottomText.textAlignment = NSTextAlignment.Center
-        bottomText.text = ( didCancel ) ? oldBottomText : ""
+        
+        // retain meme text if the user canceled an image picking operation
+        topText.text = ( didCancel ) ? oldTopText : "TOP"
+        bottomText.text = ( didCancel ) ? oldBottomText : "BOTTOM"
     }
     
     // the user can take a picture using the camera or
@@ -62,12 +83,56 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // actual picture-taking functionality.
     @IBAction func takeOrPickImage( sender: UIBarButtonItem )
     {
+        // copy any already-inputted text so it will still be there
+        // if the user cancels the picking operation
+        oldTopText = topText.text?
+        oldBottomText = bottomText.text?
+        
         let pickerController = UIImagePickerController()
         
         pickerController.delegate = self
         pickerController.sourceType = ( sender.tag == 1 ) ? .Camera : .PhotoLibrary
         
         self.presentViewController( pickerController, animated: true, completion: nil )
+    }
+    
+    func imagePickerController( picker: UIImagePickerController!,
+                                didFinishPickingImage image: UIImage!,
+                                editingInfo: [NSObject : AnyObject]! )
+    {
+        memeImageView.image = image
+        
+        // show the text fields so the user can enter meme text;
+        topText.hidden = false
+        bottomText.hidden = false
+        
+        // enable the ACTION and CANCEL buttons
+        actionButton.enabled = true
+        cancelButton.enabled = true
+        
+        // no longer coming to the view controller for the first time;
+        // the user picked an image and didn't cancel the image picking operation
+        isFirstTime = false
+        didCancel = false
+        
+        // dismiss the image picker
+        dismissViewControllerAnimated( true, completion: nil )
+    }
+    
+    func imagePickerControllerDidCancel( picker: UIImagePickerController )
+    {
+        // set the cancel flag, so that the previously entered meme text
+        // will remain with the previously picked image
+        didCancel = true
+        
+        dismissViewControllerAnimated( true, completion: nil )
+    }
+    
+    // when the user begins entering some meme text,
+    // blank out the extisting "TOP" or "BOTTOM" placeholder
+    func textFieldDidBeginEditing( textField: UITextField )
+    {
+        textField.text = ""
     }
     
     override func viewDidLoad() {
