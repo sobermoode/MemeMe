@@ -29,14 +29,34 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lji-TM-qNZ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lvk-6r-a4m">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzP-IA-uly">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jzP-IA-uly" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="1O3-af-7az"/>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="8BW-f7-nkB"/>
                             <constraint firstItem="lji-TM-qNZ" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="GKA-ez-NSq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lji-TM-qNZ" secondAttribute="trailing" constant="-16" id="Jav-AU-Hns"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lvk-6r-a4m" secondAttribute="trailing" constant="-16" id="O7C-Re-DX5"/>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="bottom" secondItem="jzP-IA-uly" secondAttribute="bottom" id="Rgh-fO-9kl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jzP-IA-uly" secondAttribute="trailing" constant="-16" id="UDd-nR-glk"/>
                             <constraint firstAttribute="trailing" secondItem="gtP-lD-RFM" secondAttribute="trailing" id="Vtc-K3-YI3"/>
                             <constraint firstItem="lji-TM-qNZ" firstAttribute="top" secondItem="GeY-dQ-5L3" secondAttribute="bottom" id="ZdK-Bc-xGM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lji-TM-qNZ" secondAttribute="trailing" constant="-16" id="aP8-GE-56N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lji-TM-qNZ" secondAttribute="trailing" constant="-16" id="goZ-Ev-jRq"/>
+                            <constraint firstItem="Lvk-6r-a4m" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="j55-pc-Rkt"/>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leadingMargin" constant="-16" id="pev-RC-Cx9"/>
                             <constraint firstItem="8pU-f8-1XI" firstAttribute="top" secondItem="gtP-lD-RFM" secondAttribute="bottom" id="slh-HF-8Ec"/>
+                            <constraint firstItem="lji-TM-qNZ" firstAttribute="top" secondItem="Lvk-6r-a4m" secondAttribute="top" id="wPg-EV-W06"/>
                             <constraint firstItem="gtP-lD-RFM" firstAttribute="top" secondItem="lji-TM-qNZ" secondAttribute="bottom" id="wSw-sT-C5L"/>
                             <constraint firstItem="gtP-lD-RFM" firstAttribute="leading" secondItem="UST-5e-Vm0" secondAttribute="leading" id="yCx-xh-OXa"/>
                         </constraints>
@@ -44,11 +64,23 @@
                             <mask key="subviews">
                                 <exclude reference="gtP-lD-RFM"/>
                                 <exclude reference="lji-TM-qNZ"/>
+                                <exclude reference="Lvk-6r-a4m"/>
+                                <exclude reference="jzP-IA-uly"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="O7C-Re-DX5"/>
+                                <exclude reference="j55-pc-Rkt"/>
+                                <exclude reference="8BW-f7-nkB"/>
                                 <exclude reference="GKA-ez-NSq"/>
+                                <exclude reference="Jav-AU-Hns"/>
+                                <exclude reference="Rgh-fO-9kl"/>
                                 <exclude reference="ZdK-Bc-xGM"/>
+                                <exclude reference="aP8-GE-56N"/>
                                 <exclude reference="goZ-Ev-jRq"/>
+                                <exclude reference="pev-RC-Cx9"/>
+                                <exclude reference="wPg-EV-W06"/>
+                                <exclude reference="1O3-af-7az"/>
+                                <exclude reference="UDd-nR-glk"/>
                                 <exclude reference="Vtc-K3-YI3"/>
                                 <exclude reference="wSw-sT-C5L"/>
                                 <exclude reference="yCx-xh-OXa"/>
@@ -59,11 +91,23 @@
                             <mask key="subviews">
                                 <include reference="gtP-lD-RFM"/>
                                 <include reference="lji-TM-qNZ"/>
+                                <include reference="Lvk-6r-a4m"/>
+                                <include reference="jzP-IA-uly"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="O7C-Re-DX5"/>
+                                <include reference="j55-pc-Rkt"/>
+                                <include reference="8BW-f7-nkB"/>
                                 <include reference="GKA-ez-NSq"/>
+                                <include reference="Jav-AU-Hns"/>
+                                <include reference="Rgh-fO-9kl"/>
                                 <include reference="ZdK-Bc-xGM"/>
+                                <include reference="aP8-GE-56N"/>
                                 <include reference="goZ-Ev-jRq"/>
+                                <include reference="pev-RC-Cx9"/>
+                                <include reference="wPg-EV-W06"/>
+                                <include reference="1O3-af-7az"/>
+                                <include reference="UDd-nR-glk"/>
                                 <include reference="Vtc-K3-YI3"/>
                                 <include reference="wSw-sT-C5L"/>
                                 <include reference="yCx-xh-OXa"/>
