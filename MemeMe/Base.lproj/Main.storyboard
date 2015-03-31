@@ -20,9 +20,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Foa-kz-yRW"/>
-                                    <barButtonItem style="plain" systemItem="camera" id="R2k-tx-p2x"/>
+                                    <barButtonItem style="plain" systemItem="camera" id="R2k-tx-p2x">
+                                        <connections>
+                                            <action selector="pickImageFromCamera:" destination="T8K-Kx-G12" id="hRm-Zh-CF4"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YXT-R3-OEj"/>
-                                    <barButtonItem title="Album" id="JEo-RK-PT1"/>
+                                    <barButtonItem title="Album" id="JEo-RK-PT1">
+                                        <connections>
+                                            <action selector="pickImageFromAlbum:" destination="T8K-Kx-G12" id="Glr-iE-cvF"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="u6o-RN-E3A"/>
                                 </items>
                             </toolbar>
@@ -121,6 +129,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomText" destination="jzP-IA-uly" id="bE1-7b-Fc6"/>
+                        <outlet property="pickFromAlbumButton" destination="JEo-RK-PT1" id="iEW-3Q-w0Q"/>
+                        <outlet property="pickFromCameraButton" destination="R2k-tx-p2x" id="YJF-Mz-nCp"/>
                         <outlet property="topText" destination="Lvk-6r-a4m" id="fnR-S6-ceh"/>
                     </connections>
                 </viewController>

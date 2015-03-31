@@ -8,10 +8,15 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+    // meme text field outlets
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
+    
+    // image selection button outlets
+    @IBOutlet weak var pickFromCameraButton: UIBarButtonItem!
+    @IBOutlet weak var pickFromAlbumButton: UIBarButtonItem!
     
     // options for meme text
     let textFieldAttributes =
@@ -30,6 +35,9 @@ class MemeEditorViewController: UIViewController
     
     override func viewWillAppear( animated: Bool )
     {
+        // disable camera button if the device doesn't have a camera
+        pickFromCameraButton.enabled = UIImagePickerController.isSourceTypeAvailable( .Camera )
+        
         // set the appearance of the text fields' text
         setTextFields()
     }
@@ -47,6 +55,31 @@ class MemeEditorViewController: UIViewController
         bottomText.text = ( didCancel ) ? oldBottomText : ""
     }
 
+    // the user can take a picture using the camera for use as a meme image.
+    // NOTE: developed on a macbook; there is no camera.
+    // the camera button is always disabled and i have not tested actual picture-taking
+    // functionality.
+    @IBAction func pickImageFromCamera( sender: UIBarButtonItem )
+    {
+        let pickerController = UIImagePickerController()
+        
+        pickerController.delegate = self
+        pickerController.sourceType = .Camera
+        
+        self.presentViewController( pickerController, animated: true, completion: nil )
+    }
+    
+    // the user can also pick an image already in their photo library to meme-ify
+    @IBAction func pickImageFromAlbum( sender: UIBarButtonItem )
+    {
+        let pickerController = UIImagePickerController()
+        
+        pickerController.delegate = self
+        pickerController.sourceType = .PhotoLibrary
+        
+        self.presentViewController( pickerController, animated: true, completion: nil )
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
