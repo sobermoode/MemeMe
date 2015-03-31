@@ -20,15 +20,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Foa-kz-yRW"/>
-                                    <barButtonItem style="plain" systemItem="camera" id="R2k-tx-p2x">
+                                    <barButtonItem tag="1" style="plain" systemItem="camera" id="R2k-tx-p2x">
                                         <connections>
-                                            <action selector="pickImageFromCamera:" destination="T8K-Kx-G12" id="hRm-Zh-CF4"/>
+                                            <action selector="takeOrPickImage:" destination="T8K-Kx-G12" id="dK8-qj-7uO"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YXT-R3-OEj"/>
-                                    <barButtonItem title="Album" id="JEo-RK-PT1">
+                                    <barButtonItem tag="2" title="Album" id="JEo-RK-PT1">
                                         <connections>
-                                            <action selector="pickImageFromAlbum:" destination="T8K-Kx-G12" id="Glr-iE-cvF"/>
+                                            <action selector="takeOrPickImage:" destination="T8K-Kx-G12" id="FBJ-l2-tW2"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="u6o-RN-E3A"/>

@@ -54,28 +54,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomText.textAlignment = NSTextAlignment.Center
         bottomText.text = ( didCancel ) ? oldBottomText : ""
     }
-
-    // the user can take a picture using the camera for use as a meme image.
-    // NOTE: developed on a macbook; there is no camera.
-    // the camera button is always disabled and i have not tested actual picture-taking
-    // functionality.
-    @IBAction func pickImageFromCamera( sender: UIBarButtonItem )
-    {
-        let pickerController = UIImagePickerController()
-        
-        pickerController.delegate = self
-        pickerController.sourceType = .Camera
-        
-        self.presentViewController( pickerController, animated: true, completion: nil )
-    }
     
-    // the user can also pick an image already in their photo library to meme-ify
-    @IBAction func pickImageFromAlbum( sender: UIBarButtonItem )
+    // the user can take a picture using the camera or
+    // pick an image already in their photo library to meme-ify
+    // NOTE: developed on a macbook; there is no camera.
+    // the camera button is always disabled and i have not tested
+    // actual picture-taking functionality.
+    @IBAction func takeOrPickImage( sender: UIBarButtonItem )
     {
         let pickerController = UIImagePickerController()
         
         pickerController.delegate = self
-        pickerController.sourceType = .PhotoLibrary
+        pickerController.sourceType = ( sender.tag == 1 ) ? .Camera : .PhotoLibrary
         
         self.presentViewController( pickerController, animated: true, completion: nil )
     }
