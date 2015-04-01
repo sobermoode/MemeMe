@@ -44,11 +44,17 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier( reuseIdentifier, forIndexPath: indexPath ) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier( reuseIdentifier, forIndexPath: indexPath ) as SavedMemeTableViewCell
         
-        cell.textLabel?.text = String( indexPath.item )
+        cell.topTextLabel?.text = Meme.allMemes[ indexPath.item ].topText
+        cell.bottomTextLabel?.text = Meme.allMemes[ indexPath.item ].bottomText
+        cell.memeImageView?.image = Meme.allMemes[ indexPath.item ].memedImage
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 150.0
     }
 
     /*
