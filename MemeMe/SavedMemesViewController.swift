@@ -10,7 +10,7 @@ import UIKit
 
 class SavedMemesViewController: UITabBarController {
     
-    var allMemes = [ Meme ]()
+    // var allMemes = [ Meme ]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
