@@ -176,7 +176,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
                 let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
                 
-                self.navigationController?.pushViewController( savedMemesViewController, animated: true )
+                // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
+                //self.navigationController?.performSegueWithIdentifier( "showSavedMemesViewController", sender: self )
+                self.performSegueWithIdentifier( "showSavedMemesViewController", sender: self )
             }
         }
         

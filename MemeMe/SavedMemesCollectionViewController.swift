@@ -14,7 +14,7 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
     
     override func viewWillAppear(animated: Bool) {
         println( "SavedMemesCollectionView will appear..." )
-        collectionView?.frame.origin.y += 55
+        // collectionView?.frame.origin.y += 55
     }
 
     override func viewDidLoad() {

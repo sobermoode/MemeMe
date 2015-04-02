@@ -202,6 +202,7 @@
                             </collectionViewCell>
                         </cells>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Collection" id="Yoc-kA-qdE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPV-y9-VXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -211,7 +212,7 @@
         <!--Table-->
         <scene sceneID="v7c-3W-iF2">
             <objects>
-                <viewController id="EXN-1c-wvJ" customClass="SavedMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Table" id="EXN-1c-wvJ" customClass="SavedMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gfo-Nn-Jf1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -270,13 +271,18 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table" id="aUf-Bg-nIN"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="DBp-HH-MVD"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="tzw-EX-jy7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3lV-VJ-nmp"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1J-iD-Ecc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3240" y="115"/>
+            <point key="canvasLocation" x="3240" y="125"/>
         </scene>
         <!--Saved Memes View Controller-->
         <scene sceneID="BbV-Mb-BwV">
@@ -289,8 +295,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="EXN-1c-wvJ" kind="relationship" relationship="viewControllers" id="O3J-h7-CQW"/>
-                        <segue destination="gAu-F2-IrN" kind="relationship" relationship="viewControllers" id="Nyz-om-4El"/>
+                        <segue destination="gAu-F2-IrN" kind="relationship" relationship="viewControllers" id="Jje-rD-q9Q"/>
+                        <segue destination="EXN-1c-wvJ" kind="relationship" relationship="viewControllers" id="ZC3-RU-cp5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HmV-rX-8xY" userLabel="First Responder" sceneMemberID="firstResponder"/>
