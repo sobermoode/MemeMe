@@ -137,7 +137,11 @@
                                 <action selector="shareMemedImage:" destination="T8K-Kx-G12" id="lOG-kz-8pI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="NjE-fM-BnE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="NjE-fM-BnE">
+                            <connections>
+                                <action selector="cancelMemeification:" destination="T8K-Kx-G12" id="XHo-CN-Dpv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="VGf-9b-uoy" id="SCz-f6-HCz"/>
@@ -160,7 +164,7 @@
             <objects>
                 <viewController id="gAu-F2-IrN" customClass="SavedMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6Hb-qQ-stV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ra7-b3-oNq">
                             <size key="itemSize" width="50" height="50"/>
@@ -214,7 +218,7 @@
             <objects>
                 <viewController title="Table" id="EXN-1c-wvJ" customClass="SavedMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gfo-Nn-Jf1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -274,9 +278,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="DBp-HH-MVD"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Sent Memes" id="tzw-EX-jy7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3lV-VJ-nmp"/>
-                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -288,6 +289,7 @@
         <scene sceneID="BbV-Mb-BwV">
             <objects>
                 <tabBarController storyboardIdentifier="SavedMemesViewController" id="N0L-ls-mPP" customClass="SavedMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Mhd-qb-QlN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -307,12 +309,16 @@
         <scene sceneID="eGt-1K-zYG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="moE-Yq-Ma2" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aH7-RN-Ooa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wML-5c-pWD">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="T8K-Kx-G12" kind="relationship" relationship="rootViewController" id="pkk-vM-W35"/>
                     </connections>

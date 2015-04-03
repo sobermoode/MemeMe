@@ -174,11 +174,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 
                 // self.navigationController?.showViewController( savedMemesViewController, sender: self )
                 // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
+                
+                self.resetMemeEditorView()
+                
                 let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
+                
+                self.navigationController?.showViewController( savedMemesViewController, sender: activityView )
+                // self.presentViewController( savedMemesViewController, animated: true, completion: nil )
                 
                 // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
                 //self.navigationController?.performSegueWithIdentifier( "showSavedMemesViewController", sender: self )
-                self.performSegueWithIdentifier( "showSavedMemesViewController", sender: self )
+                // self.performSegueWithIdentifier( "showSavedMemesViewController", sender: sender )
             }
         }
         
@@ -215,6 +221,32 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                             memedImage: meme )
         Meme.addMeme( newMeme )
         println( "There are now \(Meme.allMemes.count) memes." )
+    }
+    
+    func resetMemeEditorView()
+    {
+        // reset the default values of the text fields
+        // and blank the selected image
+        topText.text = "TOP"
+        bottomText.text = "BOTTOM"
+        memeImageView.image = nil
+        
+        // hide the text fields until the user picks a new image to meme-ify
+        topText.hidden = true
+        bottomText.hidden = true
+        
+        // disable the ACTION and CANCEL buttons
+        actionButton.enabled = false
+        cancelButton.enabled = false
+    }
+    
+    @IBAction func cancelMemeification( sender: UIBarButtonItem )
+    {
+        resetMemeEditorView()
+        
+        let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
+        
+        self.navigationController?.showViewController( savedMemesViewController, sender: self )
     }
     
     func imagePickerControllerDidCancel( picker: UIImagePickerController )

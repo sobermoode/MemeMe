@@ -11,6 +11,21 @@ import UIKit
 class SavedMemesViewController: UITabBarController {
     
     // var allMemes = [ Meme ]()
+    
+    override func viewWillAppear( animated: Bool )
+    {
+        // hide the back button
+        // set the title
+        // create a + button to return to the meme editor view
+        self.navigationItem.setHidesBackButton( true, animated: false )
+        self.navigationItem.title = "Sent Memes"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("returnToMemeEditor") )
+    }
+    
+    func returnToMemeEditor()
+    {
+        self.navigationController?.popToRootViewControllerAnimated( true )
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

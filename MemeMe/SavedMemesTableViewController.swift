@@ -23,6 +23,12 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         // self.navigationItem.rightBarButtonItem = UIBarButtonItem( title: "Add", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil )
+        // self.navigationItem.backBarButtonItem?.enabled = false
+        
+//        self.parentViewController?.navigationItem.leftBarButtonItem?.enabled = false
+//        self.parentViewController?.navigationItem.title = "Sent Memes"
+//        self.parentViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("returnToMemeEditor2") )
+        // self.parentViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("returnToMemeEditor2") )
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +65,11 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
     }
 
     @IBAction func returnToMemeEditor( sender: UIBarButtonItem )
+    {
+        self.navigationController?.popToRootViewControllerAnimated( true )
+    }
+    
+    func returnToMemeEditor2()
     {
         self.navigationController?.popToRootViewControllerAnimated( true )
     }
