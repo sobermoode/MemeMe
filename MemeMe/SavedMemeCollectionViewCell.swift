@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SavedMemeCollectionViewCell: UICollectionViewCell {
-    
+// the collection view cells just display a thumbnail of the meme'd image
+class SavedMemeCollectionViewCell: UICollectionViewCell
+{    
     @IBOutlet weak var memeImageView: UIImageView!
 }

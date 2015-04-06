@@ -11,13 +11,14 @@ import UIKit
 class MemeDetailViewController: UIViewController {
 
     @IBOutlet weak var memeImageView: UIImageView!
-    var memedImage: UIImage!
-    // var imageNumber: Int!
     
-    override func viewWillAppear(animated: Bool) {
-        println( "MemeDetailViewController will appear..." )
-        // println( "The imageNumber is: \(imageNumber!)" )
-        // println( "The image is: \(memeImageView.image!)" )
+    // this var holds the image set in SavedMemesCollectionViewCotroller's
+    // prepareForSegue()
+    var memedImage: UIImage!
+    
+    // set the image view's image property using the holder var
+    override func viewWillAppear( animated: Bool )
+    {
         memeImageView.image = memedImage
     }
     

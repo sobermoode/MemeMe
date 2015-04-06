@@ -60,21 +60,26 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as SavedMemeCollectionViewCell
     
         // Configure the cell
-        
         cell.memeImageView?.image = Meme.allMemes[ indexPath.item ].memedImage
     
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    // set the size of the collection view cells
+    func collectionView( collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath ) -> CGSize
+    {
         return CGSizeMake( 150.0, 150.0 )
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    // segue to detail view when user selects a Meme in the table
+    override func collectionView( collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath )
+    {
+        // Apple recommends deselecting the row before the segue
         collectionView.deselectItemAtIndexPath( indexPath, animated: true )
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue( segue: UIStoryboardSegue, sender: AnyObject? )
+    {
         if( segue.identifier == "detailFromCollectionView" )
         {
             // get a reference to the detail view
@@ -88,7 +93,7 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
             let imageIndex = path?.row
             let memeImage = Meme.allMemes[ imageIndex! ].memedImage
             
-            // set the image on the detail view
+            // set the holder image on the detail view
             memeDetailViewController.memedImage = memeImage
         }
     }
