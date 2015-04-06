@@ -200,15 +200,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.navigationController?.navigationBar.hidden = true
         bottomToolbar.hidden = true
         
+        // change the aspect so that the meme text fits within the image
+        self.memeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        
         self.view.drawViewHierarchyInRect( self.view.frame, afterScreenUpdates: true )
         
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        // show the navigation bar and toolbar again after saving the meme'd image
+        // show the navigation bar and toolbar again after saving the meme'd image;
+        // also, reset the aspect mode
         self.navigationController?.navigationBar.hidden = false
         bottomToolbar.hidden = false
+        self.memeImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
         return memedImage
     }
@@ -278,6 +283,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             let userInfo = notification.userInfo
             let keyboardSize = userInfo![ UIKeyboardFrameEndUserInfoKey ] as NSValue
             self.view.frame.origin.y -= keyboardSize.CGRectValue().height
+            
+            // disable the ACTION button so that the user can't
+            // meme-ify a keyboard-shifted image
+            actionButton.enabled = false
         }
     }
     
@@ -290,6 +299,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             let userInfo = notification.userInfo
             let keyboardSize = userInfo![ UIKeyboardFrameEndUserInfoKey ] as NSValue
             self.view.frame.origin.y += keyboardSize.CGRectValue().height
+            
+            // re-enable ACTION button, if necessary
+            if( !actionButton.enabled )
+            {
+                actionButton.enabled = true
+            }
         }
     }
 

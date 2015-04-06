@@ -22,13 +22,6 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        // self.navigationItem.rightBarButtonItem = UIBarButtonItem( title: "Add", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil )
-        // self.navigationItem.backBarButtonItem?.enabled = false
-        
-//        self.parentViewController?.navigationItem.leftBarButtonItem?.enabled = false
-//        self.parentViewController?.navigationItem.title = "Sent Memes"
-//        self.parentViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("returnToMemeEditor2") )
-        // self.parentViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("returnToMemeEditor2") )
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,15 +56,31 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150.0
     }
-
-    @IBAction func returnToMemeEditor( sender: UIBarButtonItem )
-    {
-        self.navigationController?.popToRootViewControllerAnimated( true )
-    }
     
-    func returnToMemeEditor2()
+    override func tableView( tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath )
     {
-        self.navigationController?.popToRootViewControllerAnimated( true )
+        println( "Selecting a row..." )
+        
+        tableView.deselectRowAtIndexPath( indexPath, animated: false )
+        
+        // performSegueWithIdentifier( "showMemeDetailViewController", sender: Meme.allMemes[ indexPath.item ].memedImage )
+        // performSegueWithIdentifier( "showMemeDetailViewController", sender: self )
+        
+        // var memeDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "MemeDetailViewController" ) as MemeDetailViewController
+        
+//        var memeDetailViewController = MemeDetailViewController()
+//        memeDetailViewController.imageNumber = indexPath.item
+//        println( memeDetailViewController.imageNumber )
+//
+//        println( "The MemeDetailViewController ImageView is \(memeDetailViewController.memeImageView?)" )
+//        
+//        memeDetailViewController.memeImageView? = UIImageView( image: Meme.allMemes[ indexPath.item ].memedImage )
+        
+//        memeDetailViewController.memeImageView?.frame = CGRectMake( 0.0, 0.0, Meme.allMemes[ indexPath.item ].memedImage.size.width, Meme.allMemes[ indexPath.item ].memedImage.size.height )
+//        memeDetailViewController.memeImageView?.image = Meme.allMemes[ indexPath.item ].memedImage
+        
+        // self.navigationController?.showViewController( memeDetailViewController, sender: indexPath.item )
+        // self.navigationController?.performSegueWithIdentifier( "showMemeDetailViewController", sender: indexPath.item )
     }
     
     /*
@@ -119,14 +128,48 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println( "Preparing for segue..." )
+        // println( "\(segue.identifier?)" )
+        
+        if( segue.identifier == "detailFromTableView" )
+        {
+            println( "Segue'ing from table view..." )
+            var memeDetailViewController = segue.destinationViewController as MemeDetailViewController
+            
+            let path = self.tableView.indexPathForSelectedRow()?
+            let imageIndex = path?.row
+            let memeImage = Meme.allMemes[ imageIndex! ].memedImage
+            
+            memeDetailViewController.memedImage = memeImage
+        }
+        
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        // memeDetailViewController.imageNumber! = sender? as Int
+        // segue.perform()
+        // let item = tableView.indexPathForSelectedRow()!
+        // memeDetailViewController.memeImageView?.image = sender as? UIImage
+        
+        
+        // println( "prepareForSegue: memeImage is \(memeImage)" )
+        // memeDetailViewController.memeImageView?.frame = CGRectMake( 0, 0, memeImage.size.width, memeImage.size.height )
+        // memeDetailViewController.memeImageView?.image = memeImage
+        
+        // segue.perform()
+        
+//        if( segue.identifier == "showMemeDetailViewController" )
+//        {
+//            var memeDetailViewController = segue.destinationViewController as MemeDetailViewController
+//            
+//            memeDetailViewController.imageNumber = sender? as Int
+//            
+//            segue.perform()
+//        }
     }
-    */
 
 }

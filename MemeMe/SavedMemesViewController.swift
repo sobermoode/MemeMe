@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SavedMemesViewController: UITabBarController {
+class SavedMemesViewController: UITabBarController, UITableViewDelegate {
     
     // var allMemes = [ Meme ]()
     

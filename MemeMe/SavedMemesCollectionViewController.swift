@@ -70,6 +70,29 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake( 150.0, 150.0 )
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath( indexPath, animated: true )
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if( segue.identifier == "detailFromCollectionView" )
+        {
+            // get the detail view controller to set the image
+            let memeDetailViewController = segue.destinationViewController as MemeDetailViewController
+            
+            // to find the correct image to set on the detail view, we need to get
+            // the indexPath of the cell, then use that to access the Meme's
+            // allMemes[] model data.
+            let cell = sender as UICollectionViewCell
+            let path = self.collectionView?.indexPathForCell( cell )
+            let imageIndex = path?.row
+            let memeImage = Meme.allMemes[ imageIndex! ].memedImage
+            
+            // set the image on the detail view
+            memeDetailViewController.memedImage = memeImage
+        }
+    }
 
     // MARK: UICollectionViewDelegate
 
