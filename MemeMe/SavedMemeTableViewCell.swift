@@ -10,6 +10,8 @@ import UIKit
 
 class SavedMemeTableViewCell: UITableViewCell {
 
+    // outlets to the cell's content so they can be set
+    // from the table view
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextLabel: UILabel!
     @IBOutlet weak var bottomTextLabel: UILabel!

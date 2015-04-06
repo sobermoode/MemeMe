@@ -8,15 +8,11 @@
 
 import UIKit
 
+// set the re-use identifier for the table view cells
 let reuseIdentifier = "MemeCell"
 
-class SavedMemesCollectionViewController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    override func viewWillAppear(animated: Bool) {
-        println( "SavedMemesCollectionView will appear..." )
-        // collectionView?.frame.origin.y += 55
-    }
-
+class SavedMemesCollectionViewController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+{
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,18 +42,21 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
+    override func numberOfSectionsInCollectionView( collectionView: UICollectionView ) -> Int
+    {
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
+    override func collectionView( collectionView: UICollectionView, numberOfItemsInSection section: Int ) -> Int
+    {
+        // access Meme model data and return the total number of saved Memes
         return Meme.allMemes.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView( collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath ) -> UICollectionViewCell
+    {
+        // dequeue a cell for a Meme
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as SavedMemeCollectionViewCell
     
         // Configure the cell
@@ -78,7 +77,7 @@ class SavedMemesCollectionViewController: UICollectionViewController, UICollecti
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if( segue.identifier == "detailFromCollectionView" )
         {
-            // get the detail view controller to set the image
+            // get a reference to the detail view
             let memeDetailViewController = segue.destinationViewController as MemeDetailViewController
             
             // to find the correct image to set on the detail view, we need to get

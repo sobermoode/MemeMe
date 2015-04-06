@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SavedMemesTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    // var allMemes = [ Meme ]()
-    
+class SavedMemesTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate
+{
+    // set the re-use identifier for the table view cells
     let reuseIdentifier = "MemeCell"
 
     override func viewDidLoad() {
@@ -31,21 +30,23 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
+    override func numberOfSectionsInTableView( tableView: UITableView ) -> Int
+    {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
+    override func tableView( tableView: UITableView, numberOfRowsInSection section: Int ) -> Int
+    {
+        // access Meme model data and return the total number of saved Memes
         return Meme.allMemes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath ) -> UITableViewCell
+    {
+        // dequeue a cell for a Meme
         var cell = tableView.dequeueReusableCellWithIdentifier( reuseIdentifier, forIndexPath: indexPath ) as SavedMemeTableViewCell
         
+        // set the cell's properties with the Meme data
         cell.topTextLabel?.text = Meme.allMemes[ indexPath.item ].topText
         cell.bottomTextLabel?.text = Meme.allMemes[ indexPath.item ].bottomText
         cell.memeImageView?.image = Meme.allMemes[ indexPath.item ].memedImage
@@ -53,45 +54,18 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    // set a height for the table view rows
+    override func tableView( tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)  -> CGFloat
+    {
         return 150.0
     }
     
+    // segue to detail view when user selects a Meme in the table
     override func tableView( tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath )
     {
-        println( "Selecting a row..." )
-        
+        // Apple recommends deselecting the row before the segue
         tableView.deselectRowAtIndexPath( indexPath, animated: false )
-        
-        // performSegueWithIdentifier( "showMemeDetailViewController", sender: Meme.allMemes[ indexPath.item ].memedImage )
-        // performSegueWithIdentifier( "showMemeDetailViewController", sender: self )
-        
-        // var memeDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "MemeDetailViewController" ) as MemeDetailViewController
-        
-//        var memeDetailViewController = MemeDetailViewController()
-//        memeDetailViewController.imageNumber = indexPath.item
-//        println( memeDetailViewController.imageNumber )
-//
-//        println( "The MemeDetailViewController ImageView is \(memeDetailViewController.memeImageView?)" )
-//        
-//        memeDetailViewController.memeImageView? = UIImageView( image: Meme.allMemes[ indexPath.item ].memedImage )
-        
-//        memeDetailViewController.memeImageView?.frame = CGRectMake( 0.0, 0.0, Meme.allMemes[ indexPath.item ].memedImage.size.width, Meme.allMemes[ indexPath.item ].memedImage.size.height )
-//        memeDetailViewController.memeImageView?.image = Meme.allMemes[ indexPath.item ].memedImage
-        
-        // self.navigationController?.showViewController( memeDetailViewController, sender: indexPath.item )
-        // self.navigationController?.performSegueWithIdentifier( "showMemeDetailViewController", sender: indexPath.item )
     }
-    
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -131,45 +105,23 @@ class SavedMemesTableViewController: UITableViewController, UITableViewDataSourc
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println( "Preparing for segue..." )
-        // println( "\(segue.identifier?)" )
-        
+    override func prepareForSegue( segue: UIStoryboardSegue, sender: AnyObject? )
+    {
+        // check the which segue we are making
         if( segue.identifier == "detailFromTableView" )
         {
-            println( "Segue'ing from table view..." )
+            // get a reference to the detail view
             var memeDetailViewController = segue.destinationViewController as MemeDetailViewController
             
+            // to find the correct image to set on the detail view, we need to get
+            // the indexPath of the cell, then use that to access the Meme's
+            // allMemes[] model data.
             let path = self.tableView.indexPathForSelectedRow()?
             let imageIndex = path?.row
             let memeImage = Meme.allMemes[ imageIndex! ].memedImage
             
+            // set the image on the detail view
             memeDetailViewController.memedImage = memeImage
         }
-        
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
-        // memeDetailViewController.imageNumber! = sender? as Int
-        // segue.perform()
-        // let item = tableView.indexPathForSelectedRow()!
-        // memeDetailViewController.memeImageView?.image = sender as? UIImage
-        
-        
-        // println( "prepareForSegue: memeImage is \(memeImage)" )
-        // memeDetailViewController.memeImageView?.frame = CGRectMake( 0, 0, memeImage.size.width, memeImage.size.height )
-        // memeDetailViewController.memeImageView?.image = memeImage
-        
-        // segue.perform()
-        
-//        if( segue.identifier == "showMemeDetailViewController" )
-//        {
-//            var memeDetailViewController = segue.destinationViewController as MemeDetailViewController
-//            
-//            memeDetailViewController.imageNumber = sender? as Int
-//            
-//            segue.perform()
-//        }
     }
-
 }

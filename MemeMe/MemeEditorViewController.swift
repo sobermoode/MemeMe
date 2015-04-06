@@ -79,25 +79,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             object: nil )
     }
     
-//    override func viewWillDisappear( animated: Bool )
-//    {
-//        NSNotificationCenter.defaultCenter().removeObserver(
-//            self,
-//            name: UIKeyboardWillShowNotification,
-//            object: nil )
-//        NSNotificationCenter.defaultCenter().removeObserver(
-//            self,
-//            name: UIKeyboardWillHideNotification,
-//            object: nil )
-//        
-//        // NSNotificationCenter.defaultCenter().removeObserver( self )
-//    }
-    
     func setTextFields()
     {
+        // top text field appearance
         topText.defaultTextAttributes = textFieldAttributes
         topText.borderStyle = UITextBorderStyle.None
         topText.textAlignment = NSTextAlignment.Center
+        
+        // bottom text field appearance
         bottomText.defaultTextAttributes = textFieldAttributes
         bottomText.borderStyle = UITextBorderStyle.None
         bottomText.textAlignment = NSTextAlignment.Center
@@ -131,6 +120,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                                 didFinishPickingImage image: UIImage!,
                                 editingInfo: [NSObject : AnyObject]! )
     {
+        // set the picked image
         memeImageView.image = image
         
         // show the text fields so the user can enter meme text;
@@ -165,32 +155,28 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             activity, completed, items, error in
             if( completed )
             {
-                println( "Calling completion handler..." )
+                // save the meme'd image to the model data
                 self.saveMeme( memedImage )
+                
+                // dismiss the activity view
                 self.dismissViewControllerAnimated( true, completion: nil )
                 
-                // let savedMemesViewController = SavedMemesViewController()
-                // savedMemesViewController.allMemes = self.savedMemes
-                
-                // self.navigationController?.showViewController( savedMemesViewController, sender: self )
-                // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
-                
+                // reset the meme editor to its default state
                 self.resetMemeEditorView()
                 
+                // instantiate the SavedMemesViewController
                 let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
                 
+                // segue to the saved memes view
                 self.navigationController?.showViewController( savedMemesViewController, sender: activityView )
-                // self.presentViewController( savedMemesViewController, animated: true, completion: nil )
-                
-                // self.navigationController?.pushViewController( savedMemesViewController, animated: true )
-                //self.navigationController?.performSegueWithIdentifier( "showSavedMemesViewController", sender: self )
-                // self.performSegueWithIdentifier( "showSavedMemesViewController", sender: sender )
             }
         }
         
+        // bring up the activity view
         self.presentViewController( activityView, animated: true, completion: nil )
     }
     
+    // create the image with overlayed meme text
     func createMemedImage() -> UIImage
     {
         // Render view to an image
@@ -218,16 +204,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return memedImage
     }
     
+    // add the new Meme to the model
     func saveMeme( meme: UIImage )
     {
         let newMeme = Meme( topText: topText.text,
                             bottomText: bottomText.text,
                             image: memeImageView.image,
                             memedImage: meme )
+        
         Meme.addMeme( newMeme )
-        println( "There are now \(Meme.allMemes.count) memes." )
     }
     
+    // reset meme editor view to default state
     func resetMemeEditorView()
     {
         // reset the default values of the text fields
@@ -245,15 +233,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         cancelButton.enabled = false
     }
     
+    // user cancels meme-ification of an image
     @IBAction func cancelMemeification( sender: UIBarButtonItem )
     {
+        // reset the editor
         resetMemeEditorView()
         
+        // segue to saved memes, as per spec
         let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
         
         self.navigationController?.showViewController( savedMemesViewController, sender: self )
     }
     
+    // user cancels picking an image
     func imagePickerControllerDidCancel( picker: UIImagePickerController )
     {
         // set the cancel flag, so that the previously entered meme text
@@ -264,20 +256,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // when the user begins entering some meme text,
-    // blank out the extisting "TOP" or "BOTTOM" placeholder
+    // blank out the extisting "TOP" or "BOTTOM" placeholder;
+    // otherwise, continue editing meme text
     func textFieldDidBeginEditing( textField: UITextField )
     {
-        textField.text = ""
+        if( textField.text == "TOP" || textField.text == "BOTTOM" )
+        {
+            textField.text = ""
+        }
+        else
+        {
+            return
+        }
     }
-    
-    // TODO: these functions are being called multiple times.
-    // Figure out why. Figure out why the simulatio keyboard
-    // doesn't always appear when editing a text field.
     
     // shift the view so the keyboard doesn't obscure the image
     func shiftFrameUp( notification: NSNotification )
     {
-        println( "Shifting frame up..." )
+        // only shift the view if the user is editing the bottom text field
         if( bottomText.editing )
         {
             let userInfo = notification.userInfo
@@ -293,7 +289,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // reset the view
     func shiftFrameDown( notification: NSNotification )
     {
-        println( "Shifting frame down..." )
         if( bottomText.editing )
         {
             let userInfo = notification.userInfo
