@@ -17,6 +17,7 @@ struct Meme
     var memedImage: UIImage!
 }
 
+// this functionality is modeled after the bond villains implementation
 extension Meme
 {
     // Meme model data for saved memes

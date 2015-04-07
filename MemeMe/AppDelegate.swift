@@ -29,8 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
+    // adding custom code to handle showing the SavedMemesViewController
+    // when the app is started and there are already saved memes
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        if( Meme.allMemes.count > 0 )
+        {
+            // get a reference to the storyboard
+            var mainStoryboard = UIStoryboard( name: "Main", bundle: nil )
+            
+            // use the storyboard to instantiate the SavedMemesViewController
+            let savedMemesViewController = mainStoryboard.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
+            
+            // get a reference to the app's navigation controller
+            let navController = window?.rootViewController as UINavigationController
+            
+            // show the SavedMemesViewController
+            navController.showViewController(savedMemesViewController, sender: self)
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
