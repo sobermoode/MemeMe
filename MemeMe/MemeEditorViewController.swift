@@ -164,11 +164,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 // reset the meme editor to its default state
                 self.resetMemeEditorView()
                 
-                // instantiate the SavedMemesViewController
-                let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
-                
                 // segue to the saved memes view
-                self.navigationController?.showViewController( savedMemesViewController, sender: activityView )
+                self.navigationController?.popToRootViewControllerAnimated( true )
             }
         }
         
@@ -240,9 +237,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         resetMemeEditorView()
         
         // segue to saved memes, as per spec
-        let savedMemesViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "SavedMemesViewController" ) as SavedMemesViewController
-        
-        self.navigationController?.showViewController( savedMemesViewController, sender: self )
+        self.navigationController?.popToRootViewControllerAnimated( true )
     }
     
     // user cancels picking an image
