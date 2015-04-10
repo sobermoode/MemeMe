@@ -10,20 +10,51 @@ import UIKit
 
 class SavedMemesViewController: UITabBarController, UITableViewDelegate
 {
+    // flag for launching app for the first time;
+    // otherwise, the SavedMemesViewController will automatically segue back
+    // to the meme editor if the user presses CANCEL and is sent to the
+    // SavedMemesViewController without any saved memes
+    var isFirstTime: Bool = true
+    
     override func viewWillAppear( animated: Bool )
     {
-        // hide the back button,
-        // set the title,
-        // create a + button to return to the meme editor view
-        self.navigationItem.setHidesBackButton( true, animated: false )
-        self.navigationItem.title = "Sent Memes"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector( "returnToMemeEditor" ) )
+        // this is now the initial view controller
+        // will transition to the meme editor if there are no saved memes
+        super.viewWillAppear( animated )
+        
+        // only show the meme editor on app launch
+        if( isFirstTime )
+        {
+            if( Meme.allMemes.count == 0 )
+            {
+                // instantiate the MemeEditorViewController and segue there
+                let memeEditorViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "MemeEditorViewController" ) as MemeEditorViewController
+                
+                self.navigationController?.showViewController( memeEditorViewController, sender: self )
+                
+                // not coming to the SavedMemesViewController on app launch, anymore
+                isFirstTime = false
+            }
+        }
+            
+        // every other time the SavedMemesViewEditor is shown, it will need to be set up correctly
+        else
+        {
+            // hide the back button,
+            // set the title,
+            // create a + button to return to the meme editor view
+            self.navigationItem.setHidesBackButton( true, animated: false )
+            self.navigationItem.title = "Sent Memes"
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector( "returnToMemeEditor" ) )
+        }
     }
     
-    // return to the root view controller, which is the meme editor
+    // return to the meme editor
     func returnToMemeEditor()
     {
-        self.navigationController?.popToRootViewControllerAnimated( true )
+        let memeEditorViewController = self.storyboard?.instantiateViewControllerWithIdentifier( "MemeEditorViewController" ) as MemeEditorViewController
+        
+        self.navigationController?.showViewController( memeEditorViewController, sender: self )
     }
 
     override func viewDidLoad() {

@@ -9,7 +9,7 @@
         <!--Meme Editor View Controller-->
         <scene sceneID="jos-IT-kU6">
             <objects>
-                <viewController id="T8K-Kx-G12" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditorViewController" id="T8K-Kx-G12" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GeY-dQ-5L3"/>
                         <viewControllerLayoutGuide type="bottom" id="8pU-f8-1XI"/>
@@ -491,6 +491,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="SavedMemesViewController" id="N0L-ls-mPP" customClass="SavedMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="HHx-rs-CIO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Mhd-qb-QlN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -521,7 +522,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="T8K-Kx-G12" kind="relationship" relationship="rootViewController" id="pkk-vM-W35"/>
+                        <segue destination="N0L-ls-mPP" kind="relationship" relationship="rootViewController" id="VGM-cU-bsI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSX-2U-Adt" userLabel="First Responder" sceneMemberID="firstResponder"/>
